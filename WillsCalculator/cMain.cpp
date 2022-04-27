@@ -5,6 +5,7 @@ wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 EVT_BUTTON(wxID_ANY, OnButtonClicked)
 wxEND_EVENT_TABLE();
 
+wxString txtbx;
 cMain::cMain() :wxFrame(nullptr, wxID_ANY, "Wills Calculator!", wxPoint(30, 30), wxSize(275, 400))
 {
 	m_txtbx = new wxTextCtrl(this, 10011, "0", wxPoint(5, 5), wxSize(253, 150));
@@ -16,8 +17,10 @@ cMain::~cMain()
 		
 }
 
+
 void cMain::OnButtonClicked(wxCommandEvent& evt)
 {
+	
 	if (firstClick && m_txtbx->GetLabelText() == "0")
 	{
 		m_txtbx->SetLabelText("");
@@ -106,52 +109,14 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 		m_txtbx->AppendText("0");
 		txtbx.append("0");		
 	}
+
+	m_txtbx->SetLabelText(txtbx);
+}
+void cMain::equalsclicked() 
+{
+	txtbx = std::to_string(processorinstance->equalsClicked(txtbx.ToStdString()));
+	
+		
 }
 
-void cMain::equalsclicked()
-{
-	wxString left;
-	wxString right;
-	int answer;
-	if (txtbx.Contains("+"))
-	{
-		int n = txtbx.find("+");
-		left = txtbx.SubString(0, n);
-		right = txtbx.SubString(n+1, txtbx.length());
-		answer = wxAtoi(left) + wxAtoi(right);
-		m_txtbx->SetLabelText(std::to_string(answer));
-	}
-	else if (txtbx.Contains("-"))
-	{
-		int n = txtbx.find("-");
-		left = txtbx.SubString(0, n);
-		right = txtbx.SubString(n + 1, txtbx.length());
-		answer = wxAtoi(left) - wxAtoi(right);
-		m_txtbx->SetLabelText(std::to_string(answer));
-	}
-	else if (txtbx.Contains("X"))
-	{
-		int n = txtbx.find("X");
-		left = txtbx.SubString(0, n);
-		right = txtbx.SubString(n + 1, txtbx.length());
-		answer = wxAtoi(left) * wxAtoi(right);
-		m_txtbx->SetLabelText(std::to_string(answer));
-	}
-	else if (txtbx.Contains("/"))
-	{
-		int n = txtbx.find("/");
-		left = txtbx.SubString(0, n);
-		right = txtbx.SubString(n + 1, txtbx.length());
-		answer = wxAtoi(left) / wxAtoi(right);
-		m_txtbx->SetLabelText(std::to_string(answer));
-	}
-	if (txtbx.Contains("%"))
-	{
-		int n = txtbx.find("%");
-		left = txtbx.SubString(0, n);
-		right = txtbx.SubString(n + 1, txtbx.length());
-		answer = wxAtoi(left) % wxAtoi(right);
-		m_txtbx->SetLabelText(std::to_string(answer));
-	}
-	
-}
+
