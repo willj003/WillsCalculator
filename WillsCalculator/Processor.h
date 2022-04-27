@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include "IBaseCommand.h"
+#include <vector>
 
 class Processor
 {
@@ -11,10 +13,11 @@ public:
 		return instance;
 	}
 	int equalsClicked(const std::string& txtbx);
-
+	std::vector<char> operators;
+	void addToOperators(char op);
+	bool OperatorCheck(const std::string& txtbx);
 private:
 	Processor() {};
-	
 	
 };
 

@@ -29,6 +29,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		m_txtbx->AppendText("+");
 		txtbx.append("+");
+		processorinstance->addToOperators('+');
 	}
 	else if (evt.GetId() == 10007)
 	{
@@ -83,21 +84,26 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 	{
 		m_txtbx->AppendText("-");
 		txtbx.append("-");
+		processorinstance->addToOperators('-');
 	}
 	else if (evt.GetId() == 10012)
 	{
 		m_txtbx->AppendText("X");
 		txtbx.append("X");
+		processorinstance->addToOperators('X');
 	}
 	else if (evt.GetId() == 10013)
 	{
 		m_txtbx->AppendText("/");
 		txtbx.append("/");
+		processorinstance->addToOperators('/');
+
 	}
 	else if (evt.GetId() == 10017)
 	{
 		m_txtbx->AppendText("%");
 		txtbx.append("%");
+		processorinstance->addToOperators('%');
 	}
 	else if (evt.GetId() == 10016)
 	{
@@ -114,9 +120,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 }
 void cMain::equalsclicked() 
 {
-	txtbx = std::to_string(processorinstance->equalsClicked(txtbx.ToStdString()));
-	
-		
+	txtbx = std::to_string(processorinstance->equalsClicked(txtbx.ToStdString()));		
 }
 
 
