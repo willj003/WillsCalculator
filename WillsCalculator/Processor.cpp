@@ -1,15 +1,15 @@
 #include "Processor.h"
 
-//Processor Processor::s_Instance;
+
 
 int Processor::equalsClicked(const std::string& txtbx)
 {
 	std::string left;
 	std::string right;
-	int answer;
+	int answer = 0;
 	
 	
-	if (txtbx.find("+"))
+	if (txtbx.find("+")!=std::string::npos)
 	{
 		int n = txtbx.find("+");
 		left = txtbx.substr(0, n);
@@ -17,7 +17,7 @@ int Processor::equalsClicked(const std::string& txtbx)
 		answer = std::atoi(left.c_str()) + std::atoi(right.c_str());
 		
 	}	
-	else if (txtbx.find("-"))
+	else if (txtbx.find("-") != std::string::npos)
 	{	
 		int n = txtbx.find("-");
 		left = txtbx.substr(0, n);
@@ -25,7 +25,7 @@ int Processor::equalsClicked(const std::string& txtbx)
 		answer = std::atoi(left.c_str()) - std::atoi(right.c_str());
 
 	}
-	else if (txtbx.find("X"))
+	else if (txtbx.find("X") != std::string::npos)
 	{
 		int n = txtbx.find("X");
 		left = txtbx.substr(0, n);
@@ -33,7 +33,7 @@ int Processor::equalsClicked(const std::string& txtbx)
 		answer = std::atoi(left.c_str()) * std::atoi(right.c_str());
 
 	}
-	else if (txtbx.find("/"))
+	else if (txtbx.find("/") != std::string::npos)
 	{
 		int n = txtbx.find("/");
 		left = txtbx.substr(0, n);
@@ -42,7 +42,7 @@ int Processor::equalsClicked(const std::string& txtbx)
 		
 
 	}
-	if (txtbx.find("%"))
+	else if (txtbx.find("%") != std::string::npos)
 	{
 		int n = txtbx.find("%");
 		left = txtbx.substr(0, n);
