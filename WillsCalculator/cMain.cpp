@@ -115,6 +115,83 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 		m_txtbx->AppendText("0");
 		txtbx.append("0");		
 	}
+	else if (evt.GetId() == 10015)
+	{
+		int toBin = std::atoi(txtbx.c_str());
+		std::string toReverse = "";
+		while (toBin != 0) {
+			toReverse = std::to_string(toBin % 2) + toReverse;
+			toBin /= 2;
+		}
+		txtbx = toReverse;
+	}
+	else if (evt.GetId() == 10014)
+	{
+	int toHex = std::atoi(txtbx.c_str());
+
+	std::string toReverse = "";
+	while (toHex != 0) {
+		int temp = toHex % 16;
+		if (temp < 10)
+		{
+			toReverse = (char)(temp + 48) + toReverse;
+		}
+		else
+			toReverse = (char)(temp + 55) + toReverse;
+		toHex /= 16;
+	}
+	txtbx = "0x"+toReverse;
+	}
+	else if (evt.GetId() == 10019)
+	{
+	bool binary = true;
+	for (int i = 0; i < txtbx.length(); i++)
+	{
+		if ((int)txtbx[i] - 48 > 1)
+		{
+			binary = false;
+			break;
+		}
+	}
+	if (binary)
+	{
+		int whatever;
+		whatever = std::atoi(txtbx.c_str());
+		txtbx = "";
+		int base = 1;
+		int savetemp;
+		int lastNum = 0;
+		while (whatever)
+		{
+			savetemp = whatever % 10;
+			whatever /= 10;
+			lastNum += savetemp * base;
+
+			base = base * 2;
+		}
+		txtbx = std::to_string(lastNum);
+	}
+	else if (txtbx.Contains("0x"))
+	{
+		int length = txtbx.size();
+		int base = 1;
+		int temp = 0;
+		for (size_t i = length-1; i > 1; i--)	
+		{
+			if (txtbx[i] >= '0' && txtbx[i] <= '9')
+			{
+				temp += ((int)txtbx[i] - 48) * base;
+
+			}
+			else if (txtbx[i] >= 'A' && txtbx[i] <= 'F')
+			{
+				temp += ((int)txtbx[i] - 55) * base;
+			}
+			base = base * 16;
+		}
+		txtbx = std::to_string(temp);
+	}
+	}
 
 	m_txtbx->SetLabelText(txtbx);
 }
