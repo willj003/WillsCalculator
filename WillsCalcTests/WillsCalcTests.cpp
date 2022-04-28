@@ -26,7 +26,15 @@ int main()
     tester.Test9();
     tester.Test10();
     buttonTest.test1();
-    
+    buttonTest.test2();
+    buttonTest.test3();
+    buttonTest.test4();
+    buttonTest.test5();
+    buttonTest.test6();
+    buttonTest.test7();
+    buttonTest.test8();
+    buttonTest.test9();
+    buttonTest.test10();    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
