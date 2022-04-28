@@ -18,8 +18,15 @@ int main()
     tester.Test1();
     tester.Test2();
     tester.Test3();
+    tester.Test4();
+    tester.Test5();
+    tester.Test6();
+    tester.Test7();
+    tester.Test8();
+    tester.Test9();
+    tester.Test10();
     buttonTest.test1();
-    std::cout << "Hello World!\n";
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
