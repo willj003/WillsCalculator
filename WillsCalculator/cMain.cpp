@@ -190,6 +190,7 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 			base = base * 16;
 		}
 		txtbx = std::to_string(temp);
+		
 	}
 	}
 
@@ -198,6 +199,86 @@ void cMain::OnButtonClicked(wxCommandEvent& evt)
 void cMain::equalsclicked() 
 {
 	txtbx = std::to_string(processorinstance->equalsClicked(txtbx.ToStdString()));		
+}
+
+void cMain::setTxtbx(std::string& _txtbx)
+{
+	txtbx = _txtbx;
+}
+
+std::string cMain::DecToHex(std::string _txtbox)
+{
+	int toHex = std::atoi(_txtbox.c_str());
+
+	std::string toReverse = "";
+	while (toHex != 0) {
+		int temp = toHex % 16;
+		if (temp < 10)
+		{
+			toReverse = (char)(temp + 48) + toReverse;
+		}
+		else
+			toReverse = (char)(temp + 55) + toReverse;
+		toHex /= 16;
+	}
+	toReverse = "0x" + toReverse;
+	return toReverse;
+}
+
+std::string cMain::HexToDec(std::string _txtbx)
+{
+	int length = _txtbx.size();
+	int base = 1;
+	int temp = 0;
+	std::string answer = "";
+	for (size_t i = length - 1; i > 1; i--)
+	{
+		if (_txtbx[i] >= '0' && _txtbx[i] <= '9')
+		{
+			temp += ((int)_txtbx[i] - 48) * base;
+
+		}
+		else if (_txtbx[i] >= 'A' && _txtbx[i] <= 'F')
+		{
+			temp += ((int)_txtbx[i] - 55) * base;
+		}
+		base = base * 16;
+	}
+	answer = std::to_string(temp);
+	return answer;
+}
+
+std::string cMain::DecToBinary(std::string _txtbx)
+{
+	//Pass in a string of normal number ex: 832.
+	int toBin = std::atoi(_txtbx.c_str());
+	std::string toReverse = "";
+	while (toBin != 0) {
+		toReverse = std::to_string(toBin % 2) + toReverse;
+		toBin /= 2;
+	}
+	return toReverse;
+}
+
+std::string cMain::BinaryToDec(std::string _txtbx)
+{
+	//When calling, pass in string of 0 and 1. Ex: 100010
+	int whatever;
+	whatever = std::atoi(txtbx.c_str());
+	std::string temptxtbx = "";
+	int base = 1;
+	int savetemp;
+	int lastNum = 0;
+	while (whatever)
+	{
+		savetemp = whatever % 10;
+		whatever /= 10;
+		lastNum += savetemp * base;
+
+		base = base * 2;
+	}
+	temptxtbx = std::to_string(lastNum);
+	return temptxtbx;
 }
 
 
